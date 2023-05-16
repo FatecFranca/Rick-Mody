@@ -2,25 +2,39 @@ import { useNavigation } from '@react-navigation/native';
 import React, {useState} from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-const Login = () => {
+const Register = () => {
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [cpf, setCPF] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [course, setCourse] = useState('');
 
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        if(email === '' && password === ''){
-            navigation.navigate('main')
-        }else{
-            alert('E-mail ou senha inválidos!')
-        }
+    const resgisterNewUser = () => {
+        navigation.navigate('login')
     };
-    const newUser = () => {
-        navigation.navigate('register')
-    }
 
     return (
         <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                placeholder="Nome"
+                value={name}
+                onChangeText={setName}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Telefone"
+                value={phone}
+                onChangeText={setPhone}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="CPF"
+                value={cpf}
+                onChangeText={setCPF}
+            />
             <TextInput
                 style={styles.input}
                 placeholder="E-mail"
@@ -29,16 +43,12 @@ const Login = () => {
             />
             <TextInput
                 style={styles.input}
-                placeholder="Senha"
-                secureTextEntry={true}
-                value={password}
-                onChangeText={setPassword}
+                placeholder="Curso"
+                value={course}
+                onChangeText={setCourse}
             />
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Entrar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={newUser}>
-                <Text style={styles.buttonText}>Cadastrar Usuário</Text>
+            <TouchableOpacity style={styles.button} onPress={resgisterNewUser}>
+                <Text style={styles.buttonText}>Salvar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -72,4 +82,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Login;
+export default Register;
